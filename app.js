@@ -1,5 +1,5 @@
 const express = require("express");
-const router = require("./backend/routes/expense.routes")
+const router = require("./backend/routes/index.routes")
 const app = express();
 const cors = require("cors");
 const connectDB = require("./backend/config/connectDB");

@@ -9,7 +9,7 @@ class ExpenseController{
 
             return res.status(201).json({
                 message: "Expense added successfuly",
-                expense,
+                data: expense,
             });
         } catch(error){
             console.error("Error adding expense:", error);

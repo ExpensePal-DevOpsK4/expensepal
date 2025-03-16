@@ -8,7 +8,6 @@ const validateExpense = (req, res, next) => {
   }
 
   req.body = value; // Attach validated data to req.body
-  console.log(req.body);
   next(); // Pass control to the next middleware or controller
 };
 
