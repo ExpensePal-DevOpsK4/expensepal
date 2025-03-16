@@ -24,6 +24,7 @@ const expenseSchema = new mongoose.Schema({
   },
   description: {
     type: String,
+    required: false,
   },
   paymentMethod: {
     type: String,
@@ -32,7 +33,7 @@ const expenseSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    required: true,
+    required: false,
     default: Date.now,
   },
 });

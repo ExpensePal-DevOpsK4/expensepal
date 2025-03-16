@@ -12,6 +12,7 @@ class ExpenseController{
                 expense,
             });
         } catch(error){
+            console.error("Error adding expense:", error);
             return res.status(500).json({error: error.message});
         }
     }

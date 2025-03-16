@@ -1,4 +1,5 @@
 const express = require("express");
+const router = require("./backend/routes/expense.routes")
 const app = express();
 const cors = require("cors");
 const connectDB = require("./backend/config/connectDB");
@@ -12,6 +13,7 @@ app.use(cors({}));
 // to parse body data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(router);
 
 connectDB();
 
