@@ -74,6 +74,22 @@ class ExpenseController {
         .json({ message: "Error deleting expense.", error: error.message });
     }
   }
+
+  async getGeneralSummary(req, res) {
+    try {
+      const { startDate, endDate } = req.query; // Get startDate and endDate from query params, if they are provided
+      const summary = await getGeneralSummary(startDate, endDate);
+      res.status(200).json({
+        success: true,
+        message: "General spending summary",
+        data: summary,
+      });
+    } catch (err) {
+      res
+        .status(500)
+        .json({ message: "Error getting summary", error: err.message });
+    }
+  }
 }
 
 module.exports = new ExpenseController();
