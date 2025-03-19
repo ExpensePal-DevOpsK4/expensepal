@@ -77,8 +77,7 @@ class ExpenseController {
 
   async getGeneralSummary(req, res) {
     try {
-      const { startDate, endDate } = req.query; // Get startDate and endDate from query params, if they are provided
-      const summary = await getGeneralSummary(startDate, endDate);
+      const summary = await expenseService.getGeneralSummary();
       res.status(200).json({
         success: true,
         message: "General spending summary",
