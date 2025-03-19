@@ -18,7 +18,7 @@ class ExpenseService {
     }
   }
 
-  async updateExpense(id, updatedData) {
+  async updateExpense(id, updateData) {
     try {
       return await Expense.findByIdAndUpdate(
         id,
