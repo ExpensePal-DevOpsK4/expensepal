@@ -8,6 +8,7 @@ class ExpenseController{
             const expense = await expenseService.createExpense(expenseData);
 
             return res.status(201).json({
+                success: "true",
                 message: "Expense added successfuly",
                 data: expense,
             });
