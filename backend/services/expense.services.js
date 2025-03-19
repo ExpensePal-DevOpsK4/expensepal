@@ -20,10 +20,11 @@ class ExpenseService {
 
   async updateExpense(id, updatedData) {
     try {
-      return await Expense.findByIdAndUpdate(id, updatedData, {
-        new: true,
-        runValidators: true,
-      });
+      return await Expense.findByIdAndUpdate(
+        id,
+        { $set: updateData },
+        { new: true, runValidators: true }
+      );
     } catch (error) {
       throw new Error("Error editing expense: " + error.message);
     }

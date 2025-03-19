@@ -5,7 +5,7 @@ const expenseController = require('../controllers/expense.controllers');
 
 router.post('/', validateExpense, expenseController.addExpense);
 router.get('/', expenseController.getExpenses);
-router.put('/:id', validateUpdateExpense ,expenseController.updateExpense);
+router.patch('/:id', validateUpdateExpense ,expenseController.updateExpense);
 
 
 module.exports = router;
