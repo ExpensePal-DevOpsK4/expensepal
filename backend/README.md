@@ -1,1 +1,0 @@
-# ExpensePal Backend
