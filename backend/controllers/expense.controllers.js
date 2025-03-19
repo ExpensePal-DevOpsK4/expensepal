@@ -17,6 +17,19 @@ class ExpenseController{
             return res.status(500).json({error: error.message});
         }
     }
+
+    async getExpenses(req, res) {
+        try {
+            const expenses = await expenseService.getExpenses();
+            return res.status(200).json({
+                success: "true",
+                message: "Expenses retrieved successfuly",
+                data: expenses,
+            });
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
+        }
+    }
 }
 
 module.exports = new ExpenseController();

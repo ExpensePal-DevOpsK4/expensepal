@@ -9,6 +9,14 @@ class ExpenseService {
       throw new Error("Error saving expense: " + error.message);
     }
   }
+
+  async getExpenses() {
+    try {
+      return await Expense.find();
+    } catch (error) {
+      throw new Error("Error retrieving expenses: " + error.message);
+    }
+  }
 }
 
 module.exports = new ExpenseService();
