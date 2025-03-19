@@ -1,1 +1,0 @@
-# ExpensePal CI-CD Pipeline
