@@ -29,6 +29,22 @@ class ExpenseService {
       throw new Error("Error editing expense: " + error.message);
     }
   }
+
+  async deleteExpense(expenseId){
+    try {
+      // Attempt to delete the expense by its ID
+      const deletedExpense = await Expense.findByIdAndDelete(expenseId);
+  
+      // Check if the expense was found and deleted
+      if (!deletedExpense) {
+        return { success: false };
+      }
+  
+      return { success: true };
+    } catch (error) {
+      throw new Error("Error deleting expense: " + error.message);
+    }
+  }
 }
 
 module.exports = new ExpenseService();
