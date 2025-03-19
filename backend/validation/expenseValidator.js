@@ -8,4 +8,12 @@ const expenseSchema = Joi.object({
   date: Joi.date().optional(),
 });
 
-module.exports = expenseSchema;
+const updateExpenseSchema = Joi.object({
+    amount: Joi.number().positive(),
+    category: Joi.string(),
+    description: Joi.string(),
+    paymentMethod: Joi.string(),
+    date: Joi.date(),
+}).min(1);
+
+module.exports = {expenseSchema, updateExpenseSchema};
