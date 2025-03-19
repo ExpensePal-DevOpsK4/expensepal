@@ -74,6 +74,21 @@ class ExpenseController {
         .json({ message: "Error deleting expense.", error: error.message });
     }
   }
+
+  async getGeneralSummary(req, res) {
+    try {
+      const summary = await expenseService.getGeneralSummary();
+      res.status(200).json({
+        success: true,
+        message: "General spending summary",
+        data: summary,
+      });
+    } catch (err) {
+      res
+        .status(500)
+        .json({ message: "Error getting summary", error: err.message });
+    }
+  }
 }
 
 module.exports = new ExpenseController();
