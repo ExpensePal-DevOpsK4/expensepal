@@ -5,7 +5,7 @@ const cors = require("cors");
 const connectDB = require("./config/connectDB");
 require("dotenv").config();
 
-const port = process.env.PORT;
+const port = process.env.PORT || 4000;
 
 //Allow requests from any origin
 app.use(cors({}));
