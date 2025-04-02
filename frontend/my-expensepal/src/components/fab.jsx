@@ -69,7 +69,17 @@ export const Fab = ({onAddExpense}) => {
                         value={data.category}
                         onChange={(e) => setData({ ...data, category: e.target.value })}
                     />
-                    
+                    <select
+                           value={data.category}
+                           onChange={(e) => setData({ ...data, category: e.target.value })}
+                     >
+                          <option value="">Category</option>
+                          {category.map((cat) => (
+                          <option key={cat} value={cat}>
+                          {cat}
+                          </option>
+                           ))}
+                    </select>
                     <input
                         type="date"
                         value={data.date}
