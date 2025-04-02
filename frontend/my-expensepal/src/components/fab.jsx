@@ -96,7 +96,7 @@ export const Fab = ({onAddExpense}) => {
                     </button>
                 </div>
             )}
-            console.log("rendering fab")
+            
 
             <button className='fab' onClick={() => setIsOpen(!isOpen)}>
                 <p>+</p>
