@@ -81,6 +81,12 @@ export const Fab = ({onAddExpense}) => {
                            ))}
                     </select>
                     <input
+                        type="text"
+                        value={data.description}
+                        placeholder='Description'
+                        onChange={(e) => setData({ ...data, description: e.target.value })}
+                    />
+                    <input
                         type="date"
                         value={data.date}
                         placeholder='Date'
