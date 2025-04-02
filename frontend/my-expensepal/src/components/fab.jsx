@@ -63,12 +63,7 @@ export const Fab = ({onAddExpense}) => {
                         onChange={(e) => setData({ ...data, amount: e.target.value })}
                         placeholder='Amount'
                     />
-                    <input
-                        type="text"
-                        placeholder='Category'
-                        value={data.category}
-                        onChange={(e) => setData({ ...data, category: e.target.value })}
-                    />
+                    
                     <select
                            value={data.category}
                            onChange={(e) => setData({ ...data, category: e.target.value })}
