@@ -11,6 +11,8 @@ export const Fab = ({onAddExpense}) => {
 
     const formRef = useRef(null);
 
+    const category = ["Food & Drinks", "Transport", "Rent & Utilities", "Shopping", "Health & Medical", "Entertainment", "Savings & Investments", "Education", "Debt & Loans", "Miscellaneous"]
+
     const onSubmit = () => {
         if (!data.amount || !data.category || !data.description || !data.date) return;
         console.log(data)
@@ -61,12 +63,18 @@ export const Fab = ({onAddExpense}) => {
                         onChange={(e) => setData({ ...data, amount: e.target.value })}
                         placeholder='Amount'
                     />
-                    <input
-                        type="text"
-                        placeholder='Category'
-                        value={data.category}
-                        onChange={(e) => setData({ ...data, category: e.target.value })}
-                    />
+                    
+                    <select
+                           value={data.category}
+                           onChange={(e) => setData({ ...data, category: e.target.value })}
+                     >
+                          <option value="">Category</option>
+                          {category.map((cat) => (
+                          <option key={cat} value={cat}>
+                          {cat}
+                          </option>
+                           ))}
+                    </select>
                     <input
                         type="text"
                         value={data.description}
@@ -88,7 +96,7 @@ export const Fab = ({onAddExpense}) => {
                     </button>
                 </div>
             )}
-            console.log("rendering fab")
+            
 
             <button className='fab' onClick={() => setIsOpen(!isOpen)}>
                 <p>+</p>
