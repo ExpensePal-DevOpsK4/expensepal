@@ -6,6 +6,7 @@ export const Fab = ({onAddExpense}) => {
         amount: '',
         category: '',
         description: '',
+        //date: ''
     });
 
     const formRef = useRef(null);
