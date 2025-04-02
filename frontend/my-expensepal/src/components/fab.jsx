@@ -11,6 +11,8 @@ export const Fab = ({onAddExpense}) => {
 
     const formRef = useRef(null);
 
+    const category = ["Food & Drinks", "Transport", "Rent & Utilities", "Shopping", "Health & Medical", "Entertainment", "Savings & Investments", "Education", "Debt & Loans", "Miscellaneous"]
+
     const onSubmit = () => {
         if (!data.amount || !data.category || !data.description || !data.date) return;
         console.log(data)
