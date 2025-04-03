@@ -74,8 +74,8 @@ export const Card = ({
               onClick={() => onDelete?.(id)}
               onKeyDown={(e) => e.key === "Enter" && onDelete?.(id)}/>
           </div>
-          
-        
+        </>  
+            )}
     </div>
   );
 };
