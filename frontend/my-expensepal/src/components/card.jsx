@@ -26,7 +26,7 @@ export const Card = ({
   return (
       <div className='card'>
       {  /* The edit button code */}
-      {isEditing ? "editing"(
+      {isEditing ? (
                 <>
                     <input 
                         type="number" 
