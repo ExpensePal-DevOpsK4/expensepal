@@ -9,13 +9,54 @@ export const Card = ({
     description,
     date,
     onDelete,
-    
+    onEdit
 }) => {
+    const [isEditing, setIsEditing] = useState(false);
+       const [updatedExpense, setUpdatedExpense] = useState({ id, amount, category, description, date });
+   
+       const handleChange = (e) => {
+           setUpdatedExpense({ ...updatedExpense, [e.target.name]: e.target.value });
+       };
+   
+       const handleSave = () => {
+           onEdit(updatedExpense);  
+           setIsEditing(false);
+       };
    
   return (
       <div className='card'>
       {  /* The edit button code */}
-      
+      {isEditing ? (
+                <>
+                    <input 
+                        type="number" 
+                        name="amount" 
+                        value={updatedExpense.amount} 
+                        onChange={handleChange} 
+                    />
+                    <input 
+                        type="text" 
+                        name="category" 
+                        value={updatedExpense.category} 
+                        onChange={handleChange} 
+                    />
+                    <input 
+                        type="text" 
+                        name="description" 
+                        value={updatedExpense.description} 
+                        onChange={handleChange} 
+                    />
+                    <input 
+                        type="date" 
+                        name="date" 
+                        value={updatedExpense.date} 
+                        onChange={handleChange} 
+                    />
+                    <button onClick={handleSave}>Save</button>
+                    <button onClick={() => setIsEditing(false)}>Cancel</button>
+                </>
+            ) : (
+
                 <>
           <h5>{new Intl.NumberFormat("en-UK", { style: "currency", currency: "GBP" }).format(amount)}</h5>
 
@@ -35,7 +76,7 @@ export const Card = ({
               onKeyDown={(e) => e.key === "Enter" && onDelete?.(id)}/>
           </div>
         </>  
-        
+        )}
     </div>
   );
 };
