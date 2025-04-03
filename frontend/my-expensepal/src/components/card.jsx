@@ -25,7 +25,7 @@ export const Card = ({
 
   return (
       <div className='card'>
-      {  /* The edit button code 
+      {  /* The edit button code */}
       {isEditing ? "editing"(
                 <>
                     <input 
@@ -56,7 +56,7 @@ export const Card = ({
                     <button onClick={() => setIsEditing(false)}>Cancel</button>
                 </>
             ) : (
-                <>*/}
+                <>
           <h5>{new Intl.NumberFormat("en-UK", { style: "currency", currency: "GBP" }).format(amount)}</h5>
 
           {/* <h5>${amount}</h5> */}
