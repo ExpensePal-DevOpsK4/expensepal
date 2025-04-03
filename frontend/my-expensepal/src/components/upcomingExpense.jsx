@@ -18,6 +18,15 @@ export const UpcomingExpense = ({expenses = [], onDelete}) => {
         setExpenseList((prevExpenses) => [...prevExpenses, newExpense]);
     };
 
+    // Edit expense section
+   const handleEditExpense = (updatedExpense) => {
+    setExpenseList((prevExpenses) =>
+        prevExpenses.map((expense) =>
+            expense.id === updatedExpense.id ? updatedExpense : expense
+        )
+    );
+};
+
     const handleDeleteExpense = (expenseId) => {
         setExpenseList((prevExpenses) => prevExpenses.filter(expense => expense.id !== expenseId));
         if (onDelete) onDelete(expenseId);
@@ -51,7 +60,9 @@ export const UpcomingExpense = ({expenses = [], onDelete}) => {
             <div className="content">
                 {expenseList.length > 0 ? (
                     expenseList.map((expense) => (
-                        <Card key={expense.id} expense={expense} onDelete={() => handleDeleteExpense(expense.id)} />
+                        <Card key={expense.id} expense={expense} onDelete={() => handleDeleteExpense(expense.id)} 
+                        onEdit={handleEditExpense}
+                        />
                     ))
                 ) : (
                     <p className='available-info'>NO UPCOMING EXPENSES AVAILABLE</p>
