@@ -15,8 +15,7 @@
 {
   "amount": 100,
   "category": "Transport",
-  "description": "Uber to meeting",
-  "date": "2025-03-19"
+  "description": "Uber to meeting"
 }
 ```
 ### ✅ Success Response
@@ -32,7 +31,6 @@
     "amount": 100,
     "category": "Transport",
     "description": "Uber to meeting",
-    "paymentMethod": "Card",
     "date": "2025-03-19T00:00:00.000Z"
   }
 }
@@ -67,7 +65,6 @@
       "amount": 100,
       "category": "Transport",
       "description": "Uber to meeting",
-      "paymentMethod": "Card",
       "date": "2025-03-19T00:00:00.000Z"
     },
     ...
@@ -96,8 +93,7 @@
 {
   "amount": 75100,
   "category": "Food & Drinks",
-  "description": "Updated dinner expense",
-  "date": "2025-03-17"
+  "description": "Updated dinner expense"
 }
 ```
 
@@ -114,7 +110,6 @@
     "amount": 150,
     "category": "Groceries",
     "description": "Updated description",
-    "paymentMethod": "Cash",
     "date": "2025-03-19T00:00:00.000Z"
   }
 }
