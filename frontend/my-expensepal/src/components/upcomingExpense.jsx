@@ -17,6 +17,14 @@ export const UpcomingExpense = ({expenses = [], onDelete}) => {
     const handleAddExpense = (newExpense) => {
         setExpenseList((prevExpenses) => [...prevExpenses, newExpense]);
     };
+// Edit expense section
+const handleEditExpense = (updatedExpense) => {
+    setExpenseList((prevExpenses) =>
+        prevExpenses.map((expense) =>
+            expense.id === updatedExpense.id ? updatedExpense : expense
+        )
+    );
+};
 
     
 
@@ -54,7 +62,7 @@ export const UpcomingExpense = ({expenses = [], onDelete}) => {
                 {expenseList.length > 0 ? (
                     expenseList.map((expense) => (
                         <Card key={expense.id} expense={expense} onDelete={() => handleDeleteExpense(expense.id)} 
-                    
+                        onEdit={handleEditExpense}
                         />
                     ))
                 ) : (
