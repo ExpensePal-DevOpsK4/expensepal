@@ -7,7 +7,6 @@ export const Card = ({
     amount,
     category,
     description,
-    date,
     onDelete,
     onEdit
 }) => {
