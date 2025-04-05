@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import { Card } from './card'
 import { Fab } from './fab'
 import "./components.scss"
@@ -17,6 +17,16 @@ export const UpcomingExpense = ({expenses = [], onDelete}) => {
     const handleAddExpense = (newExpense) => {
         setExpenseList((prevExpenses) => [...prevExpenses, newExpense]);
     };
+// Edit expense section
+const handleEditExpense = (updatedExpense) => {
+    setExpenseList((prevExpenses) =>
+        prevExpenses.map((expense) =>
+            expense.id === updatedExpense.id ? updatedExpense : expense
+        )
+    );
+};
+
+    
 
     const handleDeleteExpense = (expenseId) => {
         setExpenseList((prevExpenses) => prevExpenses.filter(expense => expense.id !== expenseId));
@@ -51,7 +61,9 @@ export const UpcomingExpense = ({expenses = [], onDelete}) => {
             <div className="content">
                 {expenseList.length > 0 ? (
                     expenseList.map((expense) => (
-                        <Card key={expense.id} expense={expense} onDelete={() => handleDeleteExpense(expense.id)} />
+                        <Card key={expense.id} expense={expense} onDelete={() => handleDeleteExpense(expense.id)} 
+                        onEdit={handleEditExpense}
+                        />
                     ))
                 ) : (
                     <p className='available-info'>NO UPCOMING EXPENSES AVAILABLE</p>
