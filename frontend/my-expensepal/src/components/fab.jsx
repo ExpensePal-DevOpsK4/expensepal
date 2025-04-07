@@ -6,7 +6,7 @@ export const Fab = ({onAddExpense}) => {
         amount: '',
         category: '',
         description: '',
-        date: ''
+        //date: ''
     });
 
     const formRef = useRef(null);
@@ -81,12 +81,12 @@ export const Fab = ({onAddExpense}) => {
                         placeholder='Description'
                         onChange={(e) => setData({ ...data, description: e.target.value })}
                     />
-                    <input
+                    {/* <input
                         type="date"
                         value={data.date}
                         placeholder='Date'
                         onChange={(e) => setData({ ...data, date: e.target.value })}
-                    />
+                    />*/}
                     <button
                         onClick={onSubmit}
                         disabled={!data.amount || !data.category || !data.description || !data.date}

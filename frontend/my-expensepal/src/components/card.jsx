@@ -7,12 +7,11 @@ export const Card = ({
     amount,
     category,
     description,
-    date,
     onDelete,
     onEdit
 }) => {
     const [isEditing, setIsEditing] = useState(false);
-       const [updatedExpense, setUpdatedExpense] = useState({ id, amount, category, description, date });
+       const [updatedExpense, setUpdatedExpense] = useState({ id, amount, category, description});
    
        const handleChange = (e) => {
            setUpdatedExpense({ ...updatedExpense, [e.target.name]: e.target.value });
@@ -46,12 +45,6 @@ export const Card = ({
                         value={updatedExpense.description} 
                         onChange={handleChange} 
                     />
-                    <input 
-                        type="date" 
-                        name="date" 
-                        value={updatedExpense.date} 
-                        onChange={handleChange} 
-                    />
                     <button onClick={handleSave}>Save</button>
                     <button onClick={() => setIsEditing(false)}>Cancel</button>
                 </>
@@ -67,7 +60,7 @@ export const Card = ({
 
           <p>{truncate(description || "", 40)}</p>
 
-          <p>{date}</p>
+          
 
           <div className='delete-container'>
           <button onClick={() => setIsEditing(true)}>Edit</button> {/*Edit button*/}
