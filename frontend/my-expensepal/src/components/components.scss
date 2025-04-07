@@ -170,27 +170,28 @@ nav {
 
     h5 {
         font-weight: 600;
-        button{
-            color: #4db363; 
-            background: none;
-            border: 0px solid transparent;
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-right: 25px;
-            margin-bottom:px;
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-        input {
-            background-color: transparent; 
-            color: white;  
-            border:none;
-            border: 1px solid #4db363;  
-            padding: 0.5rem; 
-            border-radius: 5px;
-           /* width: 50%;
-            margin: 0.5rem 0; */
-        }    
+        
     }
+    button{
+        color: #4db363; 
+        background: none;
+        border: 0px solid transparent;
+        font-size: 1.2rem;
+        cursor: pointer;
+        margin-right: 25px;
+        margin-bottom:px;
+        transition: color 0.3s ease, border-color 0.3s ease;
+    }
+    input {
+        background-color: transparent; 
+        color: white;  
+        border:none;
+        border: 1px solid #4db363;  
+        padding: 0.5rem; 
+        border-radius: 5px;
+       /* width: 50%;
+        margin: 0.5rem 0; */
+    }    
    
     .delete-container {
         img {
