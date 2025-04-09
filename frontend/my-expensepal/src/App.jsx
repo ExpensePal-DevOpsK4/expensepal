@@ -1,4 +1,4 @@
-import { Card, Fab, Navbar, PastExpense, UpcomingExpense } from "./components"
+import { Card, Fab, Navbar, UpcomingExpense } from "./components"
 import "./app.scss"
 import { useState } from "react"
 
