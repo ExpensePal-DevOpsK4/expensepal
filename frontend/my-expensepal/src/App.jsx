@@ -14,8 +14,7 @@ const [expenses, setExpenses] = useState([
     setExpenses(expenses.filter(expense => expense.id !== id));
   };
 
- const sortedExpenses = [...expenses].sort((a, b) => new Date(b.date) - new Date(a.date));
- const totalExpense = expenses.reduce((sum, expense) => sum + Number(expense.amount), 0);
+ 
 
   return (
     <>
