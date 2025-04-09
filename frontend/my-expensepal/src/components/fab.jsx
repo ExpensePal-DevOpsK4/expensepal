@@ -5,8 +5,8 @@ export const Fab = ({onAddExpense}) => {
     const [data, setData] = useState({
         amount: '',
         category: '',
-        description: '',
-        //date: ''
+        description: ''
+    
     });
 
     const formRef = useRef(null);
@@ -14,22 +14,19 @@ export const Fab = ({onAddExpense}) => {
     const category = ["Food & Drinks", "Transport", "Rent & Utilities", "Shopping", "Health & Medical", "Entertainment", "Savings & Investments", "Education", "Debt & Loans", "Miscellaneous"]
 
     const onSubmit = () => {
-        if (!data.amount || !data.category || !data.description || !data.date) return;
+        if (!data.amount || !data.category || !data.description) return;
         console.log(data)
 
         const newExpense = {
-            id: Date.now(), // Unique ID
             amount: parseFloat(data.amount),
             category: data.category, 
-            description: data.description,
-            date: data.date
-        //console.log(data);
-        //setData({ amount: '', category: '', description: '', date: '' });
-        //setIsOpen(false); // Close the form after submitting
+            description: data.description
+
+          
      };
 
      onAddExpense(newExpense) // Call parent function to add expense
-        setData({ amount: '', category: '', description: '', date: '' }); // Reset form
+        setData({ amount: '', category: '', description: '' }); // Reset form
         setIsOpen(false); // Close form
      };
 
@@ -81,16 +78,11 @@ export const Fab = ({onAddExpense}) => {
                         placeholder='Description'
                         onChange={(e) => setData({ ...data, description: e.target.value })}
                     />
-                    {/* <input
-                        type="date"
-                        value={data.date}
-                        placeholder='Date'
-                        onChange={(e) => setData({ ...data, date: e.target.value })}
-                    />*/}
+                   
                     <button
                         onClick={onSubmit}
-                        disabled={!data.amount || !data.category || !data.description || !data.date}
-                        className={data.amount && data.category && data.description && data.date ? '' : 'disabled'}
+                        disabled={!data.amount || !data.category || !data.description }
+                        className={data.amount && data.category && data.description ? '' : 'disabled'}
                     >
                         Submit
                     </button>
