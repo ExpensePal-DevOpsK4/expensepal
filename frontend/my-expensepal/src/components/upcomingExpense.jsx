@@ -16,6 +16,7 @@ export const UpcomingExpense = ({expenses = [], onDelete}) => {
 
        // Function to add a new expense
     const handleAddExpense = (newExpense) => {
+        const expenseWithId = {...newExpense, id: Date.now()};
         setExpenseList((prevExpenses) => [...prevExpenses, newExpense]);
     };
 // Edit expense section
