@@ -29,35 +29,7 @@ nav {
     }
 }
 
-.past {
-    padding: 2rem;
 
-    h2 {
-        font-size: 2rem;
-        color: #e33f36;
-        margin-bottom: 20px;
-    }
-
-    .content {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        max-height: 20vh;
-        overflow-y: scroll;
-
-    }
-}
-
-.total-expense {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #3b3b3b;
-    color: #4db363;
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-radius: 5px;
-  }
   
 
 .upcoming {
