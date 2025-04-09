@@ -27,11 +27,11 @@ const [expenses, setExpenses] = useState([
           
 
           <section>
-            <UpcomingExpense />
+            <UpcomingExpense expenses={expenses}/>
           </section>
         </div>
       </main>
-      <Fab />
+      <Fab onAddExpense={(newExpense) => setExpenses(prev => [...prev, newExpense])}/>
     </>
 
   )
