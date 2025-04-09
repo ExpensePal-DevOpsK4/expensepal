@@ -63,7 +63,12 @@ const handleEditExpense = (updatedExpense) => {
             <div className="content">
                 {expenseList.length > 0 ? (
                     expenseList.map((expense) => (
-                        <Card key={expense.id} expense={expense} onDelete={() => handleDeleteExpense(expense.id)} 
+                        <Card key={expense.id}
+                         id={expense.id}
+                         amount={expense.amount}
+                         category={expense.category}
+                         description={expense.description} 
+                         onDelete={() => handleDeleteExpense(expense.id)} 
                         onEdit={handleEditExpense}
                         />
                     ))
