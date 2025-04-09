@@ -24,10 +24,7 @@ const [expenses, setExpenses] = useState([
         </section>
 
         <div className="mainApp">
-          <section>
-            {/* pass expenses and delete function to PastExpense */}
-            <PastExpense expenses={expenses} onDelete={handleDelete} totalExpense={totalExpense} sortedExpenses={sortedExpenses} />
-          </section>
+          
 
           <section>
             <UpcomingExpense />
