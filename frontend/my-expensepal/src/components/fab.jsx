@@ -5,8 +5,8 @@ export const Fab = ({onAddExpense}) => {
     const [data, setData] = useState({
         amount: '',
         category: '',
-        description: '',
-        //date: ''
+        description: ''
+    
     });
 
     const formRef = useRef(null);
@@ -18,14 +18,11 @@ export const Fab = ({onAddExpense}) => {
         console.log(data)
 
         const newExpense = {
-            //id: Date.now(), // Unique ID
             amount: parseFloat(data.amount),
             category: data.category, 
             description: data.description
-           // date: data.date
-        //console.log(data);
-        //setData({ amount: '', category: '', description: '', date: '' });
-        //setIsOpen(false); // Close the form after submitting
+
+          
      };
 
      onAddExpense(newExpense) // Call parent function to add expense
@@ -81,12 +78,7 @@ export const Fab = ({onAddExpense}) => {
                         placeholder='Description'
                         onChange={(e) => setData({ ...data, description: e.target.value })}
                     />
-                    {/* <input
-                        type="date"
-                        value={data.date}
-                        placeholder='Date'
-                        onChange={(e) => setData({ ...data, date: e.target.value })}
-                    />*/}
+                   
                     <button
                         onClick={onSubmit}
                         disabled={!data.amount || !data.category || !data.description }
