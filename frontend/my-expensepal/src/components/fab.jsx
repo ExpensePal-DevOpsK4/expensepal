@@ -21,7 +21,7 @@ export const Fab = ({onAddExpense}) => {
             //id: Date.now(), // Unique ID
             amount: parseFloat(data.amount),
             category: data.category, 
-            description: data.description,
+            description: data.description
            // date: data.date
         //console.log(data);
         //setData({ amount: '', category: '', description: '', date: '' });
