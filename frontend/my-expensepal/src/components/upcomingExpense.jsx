@@ -4,6 +4,7 @@ import { Fab } from './fab'
 import "./components.scss"
 
 
+
 export const UpcomingExpense = ({expenses = [], onDelete}) => {
     const [expenseList, setExpenseList] = useState(expenses);
 
@@ -15,6 +16,7 @@ export const UpcomingExpense = ({expenses = [], onDelete}) => {
 
        // Function to add a new expense
     const handleAddExpense = (newExpense) => {
+        const expenseWithId = {...newExpense, id: Date.now()};
         setExpenseList((prevExpenses) => [...prevExpenses, newExpense]);
     };
 // Edit expense section
@@ -61,7 +63,12 @@ const handleEditExpense = (updatedExpense) => {
             <div className="content">
                 {expenseList.length > 0 ? (
                     expenseList.map((expense) => (
-                        <Card key={expense.id} expense={expense} onDelete={() => handleDeleteExpense(expense.id)} 
+                        <Card key={expense.id}
+                         id={expense.id}
+                         amount={expense.amount}
+                         category={expense.category}
+                         description={expense.description} 
+                         onDelete={() => handleDeleteExpense(expense.id)} 
                         onEdit={handleEditExpense}
                         />
                     ))

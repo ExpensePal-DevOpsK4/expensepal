@@ -1,4 +1,4 @@
-import { Card, Fab, Navbar, PastExpense, UpcomingExpense } from "./components"
+import { Card, Fab, Navbar, UpcomingExpense } from "./components"
 import "./app.scss"
 import { useState } from "react"
 
@@ -14,8 +14,7 @@ const [expenses, setExpenses] = useState([
     setExpenses(expenses.filter(expense => expense.id !== id));
   };
 
- const sortedExpenses = [...expenses].sort((a, b) => new Date(b.date) - new Date(a.date));
- const totalExpense = expenses.reduce((sum, expense) => sum + Number(expense.amount), 0);
+ 
 
   return (
     <>
@@ -25,17 +24,14 @@ const [expenses, setExpenses] = useState([
         </section>
 
         <div className="mainApp">
-          <section>
-            {/* pass expenses and delete function to PastExpense */}
-            <PastExpense expenses={expenses} onDelete={handleDelete} totalExpense={totalExpense} sortedExpenses={sortedExpenses} />
-          </section>
+          
 
           <section>
-            <UpcomingExpense />
+            <UpcomingExpense expenses={expenses}/>
           </section>
         </div>
       </main>
-      <Fab />
+      <Fab onAddExpense={(newExpense) => setExpenses(prev => [...prev, newExpense])}/>
     </>
 
   )
