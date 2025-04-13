@@ -176,16 +176,20 @@ nav {
         }
     }
     input {
-        background-color: transparent; 
+        background-color: black; 
         color: white;  
         border:none;
-        border: 1px solid #4db363;  
         padding: 0.5rem; 
         border-radius: 5px;
-
-
     }    
-   
+     select{
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+       border: 1px solid;
+        background-color: black;
+        color: white;
+        padding: 0.5rem;
+    }
     .delete-container {
         img {
             width: 20px;

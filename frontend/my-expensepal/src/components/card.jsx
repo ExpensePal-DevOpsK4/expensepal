@@ -12,6 +12,8 @@ export const Card = ({
 }) => {
     const [isEditing, setIsEditing] = useState(false);
        const [updatedExpense, setUpdatedExpense] = useState({ id, amount, category, description});
+
+     const categoryOptions = ["Food & Drinks", "Transport", "Rent & Utilities", "Shopping", "Health & Medical", "Entertainment", "Savings & Investments", "Education", "Debt & Loans", "Miscellaneous"];
    
        const handleChange = (e) => {
            setUpdatedExpense({ ...updatedExpense, [e.target.name]: e.target.value });
@@ -33,12 +35,24 @@ export const Card = ({
                         value={updatedExpense.amount} 
                         onChange={handleChange} 
                     />
-                    <input 
+                 { /*<input 
                         type="text" 
                         name="category" 
                         value={updatedExpense.category} 
                         onChange={handleChange} 
-                    />
+                    />*/}
+                     <select
+            name="category"
+            value={updatedExpense.category}
+            onChange={handleChange}
+        >
+            <option value="">Select category</option>
+            {categoryOptions.map((option) => (
+                <option key={option} value={option}>
+                    {option}
+                </option>
+            ))}
+        </select>
                     <input 
                         type="text" 
                         name="description" 
