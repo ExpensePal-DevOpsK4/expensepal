@@ -22,4 +22,18 @@ pipeline {
             }
         }
 
+           stage('Restart Application') {
+            steps {
+                echo 'Restarting application with PM2....'
+                dir('backend') {
+                    sh '''
+                        pm2 delete backend || true
+                        pm2 start app.js --name backend
+                    '''
+                }
+            }
+        }
+    }
+
+
 
