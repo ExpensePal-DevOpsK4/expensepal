@@ -13,3 +13,13 @@ pipeline {
             }
         }
 
+        stage('Install Dependencies') {
+            steps {
+                echo 'Installing backend dependencies.....'
+                dir('backend') {
+                    sh 'npm install'
+                }
+            }
+        }
+
+
