@@ -291,3 +291,57 @@ nav {
     }
 }
 // styling for summary
+.summary {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+    h2 {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  
+    p {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+      color: #555;
+  
+      strong {
+        color: #111;
+      }
+    }
+  
+    h3 {
+      margin-top: 2rem;
+      color: #444;
+      font-size: 1.4rem;
+    }
+  
+    ul {
+      list-style: none;
+      padding: 0;
+  
+      li {
+        background: #f8f9fa;
+        border: 1px solid #e2e6ea;
+        padding: 0.75rem 1rem;
+        margin: 0.5rem 0;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        color: #333;
+  
+        &:nth-child(even) {
+          background-color: #eef1f4;
+        }
+      }
+    }
+  }
+  
