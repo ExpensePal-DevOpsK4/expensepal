@@ -1,5 +1,6 @@
-import { Card, Fab, Navbar, UpcomingExpense } from "./components"
+import { Card, Fab, Navbar, UpcomingExpense, } from "./components"
 import "./app.scss"
+import { Summary } from './components/summary'; // ✅ This bypasses the index.js issue
 import { useState } from "react"
 
 
@@ -32,6 +33,7 @@ const [expenses, setExpenses] = useState([
         </div>
       </main>
       <Fab onAddExpense={(newExpense) => setExpenses(prev => [...prev, newExpense])}/>
+      <Summary expenses={expenses} />
     </>
 
   )
