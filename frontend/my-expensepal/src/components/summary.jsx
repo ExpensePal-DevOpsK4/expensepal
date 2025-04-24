@@ -10,7 +10,7 @@ import {
 } from 'recharts';
 import './components.scss';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A569BD', '#F67280'];
+const COLORS = ['#B8B8B8', '#00C49F', '#FFBB28', '#FF8042', '#A569BD', '#F67280'];
 
 const Summary = () => {
   const [summary, setSummary] = useState(null);
@@ -37,23 +37,26 @@ const Summary = () => {
 
   return (
     <div className="summary">
-      <h2>Spending Summary</h2>
-      <p><strong>Total Spending:</strong> £{summary.totalSpending}</p>
-      <p><strong>Total Expenses:</strong> {summary.totalExpenses}</p>
-      <p><strong>Average Expense:</strong> £{summary.averageExpense}</p>
-
-      <h3>Spending by Category:</h3>
-      <ul>
-        {summary.spendingByCategory.map((item) => (
-          <li key={item._id}>
-            {item._id}: £{item.totalAmount}
-          </li>
-        ))}
-      </ul>
-
+    <h2>Spending Summary</h2>
+    <div className="summary-content">
+      <div className="summary-details">
+        <p><strong>Total Spending:</strong> £{summary.totalSpending}</p>
+        <p><strong>Total Expenses:</strong> {summary.totalExpenses}</p>
+        <p><strong>Average Expense:</strong> £{summary.averageExpense}</p>
+  
+        <h3>Spending by Category:</h3>
+        <ul>
+          {summary.spendingByCategory.map((item) => (
+            <li key={item._id}>
+              {item._id}: £{item.totalAmount}
+            </li>
+          ))}
+        </ul>
+      </div>
+  
       <div className="chart-container">
         <h4>Category Breakdown</h4>
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width={250} height={250}>
           <PieChart>
             <Pie
               data={summary.spendingByCategory}
@@ -61,7 +64,7 @@ const Summary = () => {
               nameKey="_id"
               cx="50%"
               cy="50%"
-              outerRadius={100}
+              outerRadius={80}
               label
             >
               {summary.spendingByCategory.map((entry, index) => (
@@ -74,6 +77,8 @@ const Summary = () => {
         </ResponsiveContainer>
       </div>
     </div>
+  </div>
+  
   );
 };
 
