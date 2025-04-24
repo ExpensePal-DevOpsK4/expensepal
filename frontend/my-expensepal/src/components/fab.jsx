@@ -18,7 +18,6 @@ export const Fab = ({onAddExpense}) => {
         console.log(data)
 
         const newExpense = {
-            id: Date.now(),
             amount: parseFloat(data.amount),
             category: data.category, 
             description: data.description
