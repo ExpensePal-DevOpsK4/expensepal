@@ -1,6 +1,6 @@
 import { Card, Fab, Navbar, UpcomingExpense, } from "./components"
 import "./app.scss"
-import { Summary } from './components/summary'; // ✅ This bypasses the index.js issue
+import Summary  from './components/summary'; 
 import { useState } from "react"
 
 
