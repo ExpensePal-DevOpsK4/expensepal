@@ -11,7 +11,7 @@ export const Card = ({
     onEdit
 }) => {
     const [isEditing, setIsEditing] = useState(false);
-       const [updatedExpense, setUpdatedExpense] = useState({ id, amount, category, description});
+       const [updatedExpense, setUpdatedExpense] = useState({ _id: id, amount, category, description});
 
      const categoryOptions = ["Food & Drinks", "Transport", "Rent & Utilities", "Shopping", "Health & Medical", "Entertainment", "Savings & Investments", "Education", "Debt & Loans", "Miscellaneous"];
    
@@ -20,7 +20,10 @@ export const Card = ({
        };
    
        const handleSave = () => {
-           onEdit(updatedExpense);  
+
+        if (onEdit) {
+           onEdit(updatedExpense);
+        }     
            setIsEditing(false);
        };
    
