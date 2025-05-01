@@ -21,6 +21,24 @@ pipeline {
                 }
             }
         }
+        
+        stage('Run Tests') {
+            steps {
+                echo 'Running tests...'
+                dir('backend') {
+                    sh 'npm test'
+                }
+            }
+            post {
+                success {
+                    echo 'Tests passed!'
+                }
+                failure {
+                    echo 'Tests failed. Stopping pipeline.'
+                    error 'Tests failed, pipeline halted.'
+                }
+            }
+        }
 
            stage('Restart Application') {
             steps {
