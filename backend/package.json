@@ -29,7 +29,8 @@
     "mongoose": "^8.12.1",
     "supertest": "^7.1.0"
   },
-  "jest": {
-  "setupFiles": ["./jest.setup.js"]
+"jest": {
+  "setupFiles": ["./jest.setup.js"],
+  "testEnvironment": "node"
 }
 }
