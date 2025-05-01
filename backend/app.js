@@ -17,9 +17,5 @@ app.use(router);
 
 connectDB();
 
-app.listen(port, () => {
-  console.log(`Server listening at port ${port}`);
-});
-
 
 module.exports = app;
