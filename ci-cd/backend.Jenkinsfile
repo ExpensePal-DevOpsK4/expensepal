@@ -23,9 +23,13 @@ pipeline {
         }
         
         stage('Run Tests') {
+            environment {
+                NODE_ENV = 'test'
+            }
             steps {
                 echo 'Running tests...'
                 dir('backend') {
+                    sh 'npm install' // ensures that test-only deps are present
                     sh 'npm test'
                 }
             }

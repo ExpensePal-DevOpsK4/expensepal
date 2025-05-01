@@ -1,6 +1,6 @@
 # 📘 Expense Tracker API Documentation
 
-> Base URL: `http://13.61.195.13:4000/api`
+> Base URL: `http://16.171.165.69:4000/api`
 
 ---
 

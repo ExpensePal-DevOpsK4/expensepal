@@ -1,4 +1,5 @@
 // tests/expenses.test.js
+require("dotenv").config({ path: ".env.test" }); 
 const request = require("supertest");
 const app = require("../app");
 
