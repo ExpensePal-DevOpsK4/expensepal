@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
+import React from 'react';
+
 
 export const Fab = ({onAddExpense}) => {
     const [isOpen, setIsOpen] = useState(false);
