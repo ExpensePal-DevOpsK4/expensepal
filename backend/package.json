@@ -15,7 +15,7 @@
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
-    "test": "NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest",
     "start": "node app.js"
   },
   "dependencies": {
@@ -23,10 +23,11 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "jest": "^29.7.0",
     "joi": "^17.13.3",
     "mongodb": "4.0",
     "mongoose": "^8.12.1",
-    "jest": "^29.7.0",
-    "supertest": "^7.1.0"
+    "supertest": "^7.1.0",
+    "cross-env": "^7.0.3"
   }
 }
