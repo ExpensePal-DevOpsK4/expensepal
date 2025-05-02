@@ -22,5 +22,14 @@ pipeline {
             }
         }
 
+        stage('Build Frontend') {
+            steps {
+                dir('frontend') {
+                    echo 'Building frontend app...'
+                    sh 'npm run build'
+                }
+            }
+        }
+
 }
 }
