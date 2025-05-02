@@ -13,5 +13,14 @@ pipeline {
             }
         }
 
+        stage('Install Dependencies') {
+            steps {
+                echo 'Installing frontend dependencies...'
+                dir('frontend') {
+                    sh 'npm install'
+                }
+            }
+        }
+
 }
 }
