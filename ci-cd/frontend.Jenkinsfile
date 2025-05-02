@@ -22,6 +22,15 @@ pipeline {
             }
         }
 
+        stage('Run Tests') {
+                steps {
+                    dir('frontend') {
+                        echo 'Running frontend tests...'
+                        sh 'npm test'
+                    }
+                }
+    }
+
         stage('Build Frontend') {
             steps {
                 dir('frontend') {
