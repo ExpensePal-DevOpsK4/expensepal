@@ -43,5 +43,22 @@ pipeline {
             }
         }
 
+        stage('Restart Nginx') {
+            steps {
+                echo 'Restarting Nginx...'
+                sh 'sudo systemctl restart nginx'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployment Successful :)'
+        }
+        failure {
+            echo 'Deployment Failed :('
+        }
+    }
+
 }
-}
+
