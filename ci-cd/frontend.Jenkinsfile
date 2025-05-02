@@ -35,7 +35,7 @@ pipeline {
             steps {
                 dir('frontend') {
                     echo 'Building frontend app...'
-                    sh 'yarn run build'
+                    sh 'yarn build --verbose'
                 }
             }
         }
