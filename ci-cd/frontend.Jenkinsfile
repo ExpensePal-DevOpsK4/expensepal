@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo 'Installing frontend dependencies...'
                 dir('frontend') {
-                    sh 'yarn install'
+                    sh 'yarn install --verbose'
                 }
             }
         }
