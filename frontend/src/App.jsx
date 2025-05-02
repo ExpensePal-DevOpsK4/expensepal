@@ -1,5 +1,5 @@
 import { Card, Fab, Navbar, UpcomingExpense, } from "./components"
-import "./app.scss"
+import "./App.scss"
 import Summary  from './components/summary'; 
 import { useState } from "react"
 
