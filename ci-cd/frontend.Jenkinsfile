@@ -31,5 +31,17 @@ pipeline {
             }
         }
 
+        stage('Deploy Build') {
+            steps {
+                echo 'Deploying to server...'
+                script {
+                    sh """
+                    sudo rm -rf ${DEPLOY_DIR}/*
+                    sudo cp -r frontend/dist/* ${DEPLOY_DIR}/
+                    """
+                }
+            }
+        }
+
 }
 }
