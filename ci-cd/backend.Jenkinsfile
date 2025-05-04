@@ -29,7 +29,7 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 dir('backend') {
-                    sh 'npm install' // ensures that test-only deps are present
+                    sh 'npm install'
                     sh 'npm test'
                 }
             }
@@ -44,17 +44,23 @@ pipeline {
             }
         }
 
-           stage('Restart Application') {
+        stage('Deploy to Backend Server') {
             steps {
-                echo 'Restarting application with PM2....'
-                dir('backend') {
-                    sh '''
-                        pm2 delete backend || true
-                        pm2 start app.js --name backend
-                    '''
+                echo 'Deploying to backend server via SSH...'
+                sshagent(['backend-ssh-key']) {
+                    sh """
+                    ssh ubuntu@16.171.165.69'
+                        cd /home/ubuntu/expensepal/backend &&
+                        git pull &&
+                        npm install &&
+                        pm2 delete backend || true &&
+                        pm2 start server.js --name backend
+                    '
+                    """
                 }
             }
         }
+    }
     }
 
      post {
@@ -65,7 +71,7 @@ pipeline {
             echo 'Deployment failed.'
         }
     }
-}
+
 
 
 
