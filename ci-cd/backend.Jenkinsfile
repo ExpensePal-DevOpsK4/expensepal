@@ -44,22 +44,23 @@ pipeline {
             }
         }
 
-        stage('Deploy to Backend Server') {
-            steps {
-                echo 'Deploying to backend server via SSH...'
-                sshagent(['backend-ssh-key']) {
-                    sh """
-                    ssh ubuntu@16.171.165.69'
-                        cd /home/ubuntu/expensepal/backend &&
-                        git pull &&
-                        npm install &&
-                        pm2 delete backend || true &&
-                        pm2 start server.js --name backend
-                    '
-                    """
-                }
-            }
+stage('Deploy to Backend Server') {
+    steps {
+        echo 'Deploying to backend server via SSH...'
+        sshagent(credentials: ['backend-ssh-key']) {
+            sh """
+                ssh -o StrictHostKeyChecking=no ubuntu@16.171.165.69 << 'EOF'
+                cd /home/ubuntu/expensepal/backend
+                git pull
+                npm install
+                pm2 delete backend || true
+                pm2 start server.js --name backend
+                EOF
+            """
         }
+    }
+}
+
     }
     }
 
