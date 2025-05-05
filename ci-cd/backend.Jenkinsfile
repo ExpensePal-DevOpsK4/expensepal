@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    when {
-        branch 'develop'  // Only run the pipeline for the 'main' branch
-    }
-
     environment {
         NODE_ENV = 'production'
     }
