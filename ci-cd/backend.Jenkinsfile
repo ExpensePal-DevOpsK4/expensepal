@@ -49,7 +49,7 @@ stage('Deploy to Backend Server') {
         echo 'Deploying to backend server via SSH...'
         sshagent(credentials: ['backend-ssh-key']) {
             sh """
-                ssh -o StrictHostKeyChecking=no ubuntu@16.171.165.69 << 'EOF'
+                ssh -i /var/lib/jenkins/.ssh/id_rsa ubuntu@16.171.165.69
                 cd /home/ubuntu/expensepal/backend
                 git pull
                 npm install
