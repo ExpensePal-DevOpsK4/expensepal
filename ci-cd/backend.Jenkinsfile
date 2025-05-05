@@ -79,6 +79,9 @@ stages{
         failure {
             echo 'Deployment failed :('
         }
+        always {
+            cleanWs()
+        }
     }
 }
 
