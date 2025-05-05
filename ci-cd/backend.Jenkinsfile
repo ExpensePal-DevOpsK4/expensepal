@@ -53,14 +53,16 @@ stages{
                 echo 'Deploying to backend server via SSH...'
                 sshagent(credentials: ['backend-ssh-key']) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no ubuntu@16.171.165.69 << 'EOF'
+                        ssh -o StrictHostKeyChecking=no ubuntu@16.171.165.69 '
+                            cd /home/ubuntu/expensepal || git clone https://github.com/ExpensePal-DevOpsK4/expensepal.git
                             cd /home/ubuntu/expensepal
-                            git pull
+                            git checkout develop
+                            git pull origin develop
                             cd backend
                             npm install
                             pm2 delete backend || true
                             pm2 start server.js --name backend
-                        EOF
+                        '
                     """
                 }
             }
