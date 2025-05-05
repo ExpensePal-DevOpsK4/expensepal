@@ -3,13 +3,20 @@ pipeline {
 
     environment {
         DEPLOY_DIR = '/var/www/html'
+        REMOTE_USER = 'ubuntu'
+        REMOTE_HOST = '13.50.15.123'
+        SSH_KEY = '/var/lib/jenkins/.ssh/frontend_key'
     }
 
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
                 echo 'Cloning repository...'
-                checkout scm
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/develop']],
+                    userRemoteConfigs: [[url: 'https://github.com/ExpensePal-DevOpsK4/expensepal.git']]
+                ])
             }
         }
 
@@ -23,13 +30,13 @@ pipeline {
         }
 
         stage('Run Tests') {
-                steps {
-                    dir('frontend') {
-                        echo 'Running frontend tests...'
-                        sh 'yarn test'
-                    }
+            steps {
+                dir('frontend') {
+                    echo 'Running frontend tests...'
+                    sh 'yarn test'
                 }
-    }
+            }
+        }
 
         stage('Build Frontend') {
             steps {
@@ -40,13 +47,14 @@ pipeline {
             }
         }
 
-        stage('Deploy Build') {
+        stage('Deploy to EC2') {
             steps {
-                echo 'Deploying to server...'
-                script {
+                echo 'Deploying build to frontend server...'
+                sshagent(credentials: ['frontend-ssh-key']) {
                     sh """
-                    sudo rm -rf ${DEPLOY_DIR}/*
-                    sudo cp -r frontend/dist/* ${DEPLOY_DIR}/
+                        ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${REMOTE_USER}@${REMOTE_HOST} 'sudo rm -rf ${DEPLOY_DIR}/*'
+                        scp -i ${SSH_KEY} -r frontend/dist/* ${REMOTE_USER}@${REMOTE_HOST}:/tmp/
+                        ssh -i ${SSH_KEY} ${REMOTE_USER}@${REMOTE_HOST} 'sudo cp -r /tmp/* ${DEPLOY_DIR}/'
                     """
                 }
             }
@@ -54,20 +62,22 @@ pipeline {
 
         stage('Restart Nginx') {
             steps {
-                echo 'Restarting Nginx...'
-                sh 'sudo systemctl restart nginx'
+                echo 'Restarting Nginx on frontend server...'
+                sshagent(credentials: ['frontend-ssh-key']) {
+                    sh """
+                        ssh -i ${SSH_KEY} ${REMOTE_USER}@${REMOTE_HOST} 'sudo systemctl restart nginx'
+                    """
+                }
             }
         }
     }
 
     post {
         success {
-            echo 'Deployment Successful :)'
+            echo 'Frontend deployment successful :)'
         }
         failure {
-            echo 'Deployment Failed :('
+            echo 'Frontend deployment failed :('
         }
     }
-
 }
-
