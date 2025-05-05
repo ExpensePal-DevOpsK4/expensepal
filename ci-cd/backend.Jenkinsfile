@@ -44,25 +44,27 @@ pipeline {
             }
         }
 
-stage('Deploy to Backend Server') {
-    steps {
-        echo 'Deploying to backend server via SSH...'
-        sshagent(credentials: ['backend-ssh-key']) {
-            sh """
-                ssh -i /var/lib/jenkins/.ssh/id_rsa ubuntu@16.171.165.69
-                cd /home/ubuntu/expensepal/backend
-                git pull
-                npm install
-                pm2 delete backend || true
-                pm2 start server.js --name backend
-                EOF
-            """
+        stage('Deploy to Backend Server') {
+            steps {
+                echo 'Deploying to backend server via SSH...'
+                sshagent(credentials: ['backend-ssh-key']) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no ubuntu@16.171.165.69 << 'EOF'
+                            cd /home/ubuntu/expensepal
+                            git pull
+                            cd backend
+                            npm install
+                            pm2 delete backend || true
+                            pm2 start server.js --name backend
+                        EOF
+                    """
+                }
+            }
         }
-    }
-}
+    
 
     }
-    }
+    
 
      post {
         success {
@@ -72,7 +74,7 @@ stage('Deploy to Backend Server') {
             echo 'Deployment failed :('
         }
     }
-
+}
 
 
 
