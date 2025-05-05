@@ -14,7 +14,7 @@ pipeline {
                 echo 'Cloning repository...'
                 checkout([
                     $class: 'GitSCM',
-                    branches: [[name: '*/develop']],
+                    branches: [[name: '*/frontend_cicd']],
                     userRemoteConfigs: [[url: 'https://github.com/ExpensePal-DevOpsK4/expensepal.git']]
                 ])
             }
