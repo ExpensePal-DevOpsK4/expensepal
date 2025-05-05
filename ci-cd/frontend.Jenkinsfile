@@ -24,7 +24,7 @@ pipeline {
             steps {
                 echo 'Installing frontend dependencies...'
                 dir('frontend') {
-                    sh 'yarn install'
+                    sh 'npm install'
                 }
             }
         }
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 dir('frontend') {
                     echo 'Running frontend tests...'
-                    sh 'yarn test'
+                        sh 'npm test'
                 }
             }
         }
@@ -42,7 +42,7 @@ pipeline {
             steps {
                 dir('frontend') {
                     echo 'Building frontend app...'
-                    sh 'yarn build'
+                    sh 'npm build'
                 }
             }
         }
