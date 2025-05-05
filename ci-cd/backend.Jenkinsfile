@@ -5,17 +5,21 @@ pipeline {
         NODE_ENV = 'production'
     }
 
-    stages {
+stages{
         stage('Checkout') {
             steps {
                 echo 'Cloning repository...'
-                checkout scm
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/develop']],
+                    userRemoteConfigs: [[url: 'https://github.com/ExpensePal-DevOpsK4/expensepal.git']]
+                ])
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                echo 'Installing backend dependencies.....'
+                echo 'Installing backend dependencies....'
                 dir('backend') {
                     sh 'npm install'
                 }
@@ -29,7 +33,7 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 dir('backend') {
-                    sh 'npm install' // ensures that test-only deps are present
+                    sh 'npm install'
                     sh 'npm test'
                 }
             }
@@ -44,29 +48,38 @@ pipeline {
             }
         }
 
-           stage('Restart Application') {
+        stage('Deploy to Backend Server') {
             steps {
-                echo 'Restarting application with PM2....'
-                dir('backend') {
-                    sh '''
-                        pm2 delete backend || true
-                        pm2 start app.js --name backend
-                    '''
+                echo 'Deploying to backend server via SSH...'
+                sshagent(credentials: ['backend-ssh-key']) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no ubuntu@16.171.165.69 '
+                            cd /home/ubuntu/expensepal || git clone https://github.com/ExpensePal-DevOpsK4/expensepal.git
+                            cd /home/ubuntu/expensepal
+                            git checkout develop
+                            git pull origin develop
+                            cd backend
+                            npm install
+                            pm2 delete backend || true
+                            pm2 start server.js --name backend
+                        '
+                    """
                 }
             }
         }
+    
+
     }
+    
 
      post {
         success {
-            echo 'Deployment successful!'
+            echo 'Deployment successful :)'
         }
         failure {
-            echo 'Deployment failed.'
+            echo 'Deployment failed :('
         }
     }
 }
-
-
 
 
