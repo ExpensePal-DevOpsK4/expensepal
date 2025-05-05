@@ -20,7 +20,7 @@ stages{
         stage('Prepare') {
             steps {
                 echo 'Copying .env.test to the workspace...'
-                sh 'cp /var/lib/jenkins/.env.test .env.test'
+                sh 'cp /var/lib/jenkins/.env.test /var/lib/jenkins/workspace/expensepal-backend-pipeline/backend'
             }
         }
 
