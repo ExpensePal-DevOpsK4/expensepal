@@ -26,7 +26,7 @@ pipeline {
                 dir('frontend') {
                     script {
                         timeout(time: 10, unit: 'MINUTES') {
-                            sh 'npm install --network-timeout 300000'
+                            sh 'yarn install --network-timeout 300000 --verbose'
                         }
                     }
                 }
@@ -39,7 +39,7 @@ pipeline {
                     echo 'Running frontend tests...'
                     script {
                         timeout(time: 10, unit: 'MINUTES') {
-                            sh 'npm test'
+                            sh 'yarn test'
                         }
                     }
                 }
@@ -52,7 +52,7 @@ pipeline {
                     echo 'Building frontend app...'
                     script {
                         timeout(time: 10, unit: 'MINUTES') {
-                            sh 'npm run build'
+                            sh 'yarn run build'
                         }
                     }
                 }
