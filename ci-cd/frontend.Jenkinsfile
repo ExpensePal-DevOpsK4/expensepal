@@ -17,13 +17,16 @@ pipeline {
                 echo 'Cloning repository...'
                 checkout([
                     $class: 'GitSCM',
-                    branches: [[name: '*/frontend_cicd']],
+                    branches: [[name: '*/develop']],
                     userRemoteConfigs: [[url: 'https://github.com/ExpensePal-DevOpsK4/expensepal.git']]
                 ])
             }
         }
 
         stage('Install Dependencies') {
+            when {
+                 branch 'develop'  
+            }
             steps {
                 echo 'Installing frontend dependencies...'
                 dir('frontend') {
