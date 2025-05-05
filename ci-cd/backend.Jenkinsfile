@@ -17,6 +17,13 @@ stages{
             }
         }
 
+        stage('Prepare') {
+            steps {
+                echo 'Copying .env.test to the workspace...'
+                sh 'cp /var/lib/jenkins/.env.test /var/lib/jenkins/workspace/expensepal-backend-pipeline/backend'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 echo 'Installing backend dependencies....'
