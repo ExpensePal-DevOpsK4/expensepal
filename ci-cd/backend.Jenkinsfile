@@ -5,11 +5,14 @@ pipeline {
         NODE_ENV = 'production'
     }
 
-    stages {
         stage('Checkout') {
             steps {
                 echo 'Cloning repository...'
-                checkout scm
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/develop']],
+                    userRemoteConfigs: [[url: 'https://github.com/ExpensePal-DevOpsK4/expensepal.git']]
+                ])
             }
         }
 
