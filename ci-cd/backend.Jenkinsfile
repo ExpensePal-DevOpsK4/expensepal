@@ -12,11 +12,7 @@ stages{
             }
             steps {
                 echo 'Cloning repository...'
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/develop']],
-                    userRemoteConfigs: [[url: 'https://github.com/ExpensePal-DevOpsK4/expensepal.git']]
-                ])
+                checkout scm 
             }
         }
 
