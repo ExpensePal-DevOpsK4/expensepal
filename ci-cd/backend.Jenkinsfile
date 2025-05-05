@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    when {
+        branch 'develop'  // Only run the pipeline for the 'main' branch
+    }
+
     environment {
         NODE_ENV = 'production'
     }
@@ -11,7 +15,7 @@ stages{
                 echo 'Cloning repository...'
                 checkout([
                     $class: 'GitSCM',
-                    branches: [[name: '*/main']],
+                    branches: [[name: '*/develop']],
                     userRemoteConfigs: [[url: 'https://github.com/ExpensePal-DevOpsK4/expensepal.git']]
                 ])
             }
