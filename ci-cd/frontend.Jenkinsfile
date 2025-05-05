@@ -26,7 +26,7 @@ pipeline {
                 dir('frontend') {
                     script {
                         timeout(time: 10, unit: 'MINUTES') {
-                            sh 'yarn install --network-timeout 300000 --verbose'
+                            sh 'yarn install --network-timeout 300000'
                         }
                     }
                 }
