@@ -5,6 +5,7 @@ pipeline {
         NODE_ENV = 'production'
     }
 
+stages{
         stage('Checkout') {
             steps {
                 echo 'Cloning repository...'
@@ -77,7 +78,6 @@ pipeline {
             echo 'Deployment failed :('
         }
     }
-
-
+}
 
 
