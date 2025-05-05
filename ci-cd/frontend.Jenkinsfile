@@ -99,5 +99,8 @@ pipeline {
         failure {
             echo 'Frontend deployment failed :('
         }
+        always {
+            cleanWs()
+        }
     }
 }
