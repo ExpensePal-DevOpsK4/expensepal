@@ -24,7 +24,11 @@ pipeline {
             steps {
                 echo 'Installing frontend dependencies...'
                 dir('frontend') {
-                    sh 'npm install'
+                    script {
+                        timeout(time: 10, unit: 'MINUTES') {
+                            sh 'npm install --network-timeout 300000'
+                        }
+                    }
                 }
             }
         }
@@ -33,7 +37,11 @@ pipeline {
             steps {
                 dir('frontend') {
                     echo 'Running frontend tests...'
-                        sh 'npm test'
+                    script {
+                        timeout(time: 10, unit: 'MINUTES') {
+                            sh 'npm test'
+                        }
+                    }
                 }
             }
         }
@@ -42,7 +50,11 @@ pipeline {
             steps {
                 dir('frontend') {
                     echo 'Building frontend app...'
-                    sh 'npm build'
+                    script {
+                        timeout(time: 10, unit: 'MINUTES') {
+                            sh 'npm run build'
+                        }
+                    }
                 }
             }
         }
@@ -51,11 +63,15 @@ pipeline {
             steps {
                 echo 'Deploying build to frontend server...'
                 sshagent(credentials: ['frontend-ssh-key']) {
-                    sh """
-                        ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${REMOTE_USER}@${REMOTE_HOST} 'sudo rm -rf ${DEPLOY_DIR}/*'
-                        scp -i ${SSH_KEY} -r frontend/dist/* ${REMOTE_USER}@${REMOTE_HOST}:/tmp/
-                        ssh -i ${SSH_KEY} ${REMOTE_USER}@${REMOTE_HOST} 'sudo cp -r /tmp/* ${DEPLOY_DIR}/'
-                    """
+                    script {
+                        timeout(time: 5, unit: 'MINUTES') {
+                            sh """
+                                ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${REMOTE_USER}@${REMOTE_HOST} 'sudo rm -rf ${DEPLOY_DIR}/*'
+                                scp -i ${SSH_KEY} -r frontend/dist/* ${REMOTE_USER}@${REMOTE_HOST}:/tmp/
+                                ssh -i ${SSH_KEY} ${REMOTE_USER}@${REMOTE_HOST} 'sudo cp -r /tmp/* ${DEPLOY_DIR}/'
+                            """
+                        }
+                    }
                 }
             }
         }
@@ -64,9 +80,13 @@ pipeline {
             steps {
                 echo 'Restarting Nginx on frontend server...'
                 sshagent(credentials: ['frontend-ssh-key']) {
-                    sh """
-                        ssh -i ${SSH_KEY} ${REMOTE_USER}@${REMOTE_HOST} 'sudo systemctl restart nginx'
-                    """
+                    script {
+                        timeout(time: 5, unit: 'MINUTES') {
+                            sh """
+                                ssh -i ${SSH_KEY} ${REMOTE_USER}@${REMOTE_HOST} 'sudo systemctl restart nginx'
+                            """
+                        }
+                    }
                 }
             }
         }
