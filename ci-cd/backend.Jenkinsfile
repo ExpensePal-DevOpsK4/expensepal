@@ -14,6 +14,8 @@ stages{
                     branches: [[name: '*/develop']],
                     userRemoteConfigs: [[url: 'https://github.com/ExpensePal-DevOpsK4/expensepal.git']]
                 ])
+                // Copy .env.test into the workspace
+                sh 'cp /var/lib/jenkins/.env.test .env.test'
             }
         }
 
