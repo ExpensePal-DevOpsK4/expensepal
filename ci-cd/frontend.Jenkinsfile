@@ -10,17 +10,23 @@ pipeline {
 
     stages {
         stage('Checkout') {
+            when {
+                 branch 'develop'  
+            }
             steps {
                 echo 'Cloning repository...'
                 checkout([
                     $class: 'GitSCM',
-                    branches: [[name: '*/frontend_cicd']],
+                    branches: [[name: '*/develop']],
                     userRemoteConfigs: [[url: 'https://github.com/ExpensePal-DevOpsK4/expensepal.git']]
                 ])
             }
         }
 
         stage('Install Dependencies') {
+            when {
+                 branch 'develop'  
+            }
             steps {
                 echo 'Installing frontend dependencies...'
                 dir('frontend') {
@@ -34,6 +40,9 @@ pipeline {
         }
 
         stage('Run Tests') {
+            when {
+                 branch 'develop'  
+            }
             steps {
                 dir('frontend') {
                     echo 'Running frontend tests...'
@@ -47,6 +56,9 @@ pipeline {
         }
 
         stage('Build Frontend') {
+            when {
+                 branch 'develop'  
+            }
             steps {
                 dir('frontend') {
                     echo 'Building frontend app...'
@@ -60,6 +72,9 @@ pipeline {
         }
 
         stage('Deploy to EC2') {
+            when {
+                 branch 'develop'  
+            }
             steps {
                 echo 'Deploying build to frontend server...'
                 sshagent(credentials: ['frontend-ssh-key']) {
@@ -77,6 +92,9 @@ pipeline {
         }
 
         stage('Restart Nginx') {
+            when {
+                 branch 'develop'  
+            }
             steps {
                 echo 'Restarting Nginx on frontend server...'
                 sshagent(credentials: ['frontend-ssh-key']) {
