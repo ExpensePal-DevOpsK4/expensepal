@@ -7,23 +7,13 @@ pipeline {
 
 stages{
         stage('Checkout') {
-            when {
-                 branch 'develop'  
-            }
             steps {
                 echo 'Cloning repository...'
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/develop']],
-                    userRemoteConfigs: [[url: 'https://github.com/ExpensePal-DevOpsK4/expensepal.git']]
-                ])
+                checkout scm 
             }
         }
 
         stage('Prepare') {
-            when {
-                 branch 'develop'  
-            }
             steps {
                 echo 'Copying .env.test to the workspace...'
                 sh 'cp /var/lib/jenkins/.env.test /var/lib/jenkins/workspace/expensepal-backend-pipeline/backend'
@@ -31,9 +21,6 @@ stages{
         }
 
         stage('Install Dependencies') {
-            when {
-                 branch 'develop'  
-            }
             steps {
                 echo 'Installing backend dependencies....'
                 dir('backend') {
@@ -43,9 +30,6 @@ stages{
         }
         
         stage('Run Tests') {
-            when {
-                 branch 'develop'  
-            }
             environment {
                 NODE_ENV = 'test'
             }
@@ -68,9 +52,6 @@ stages{
         }
 
         stage('Deploy to Backend Server') {
-            when {
-                 branch 'develop'  
-            }
             steps {
                 echo 'Deploying to backend server via SSH...'
                 sshagent(credentials: ['backend-ssh-key']) {
