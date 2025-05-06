@@ -38,12 +38,7 @@ export const Card = ({
                         value={updatedExpense.amount} 
                         onChange={handleChange} 
                     />
-                 { /*<input 
-                        type="text" 
-                        name="category" 
-                        value={updatedExpense.category} 
-                        onChange={handleChange} 
-                    />*/}
+
                      <select
             name="category"
             value={updatedExpense.category}
