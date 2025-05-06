@@ -74,12 +74,19 @@ export const Card = ({
 
           
 
-          <div className='delete-container'>
-          <button onClick={() => setIsEditing(true)}>Edit</button> {/*Edit button*/}
-              <img src={Delete} alt="delete" role='button' tabIndex={0} 
-              onClick={() => onDelete?.(id)}
-              onKeyDown={(e) => e.key === "Enter" && onDelete?.(id)}/>
-          </div>
+            <div className='delete-container'>
+            <button onClick={() => setIsEditing(true)}>Edit</button> {/* Edit button */}
+            {Delete && (
+                <img 
+                src={Delete} 
+                alt="delete" 
+                role="button" 
+                tabIndex={0} 
+                onClick={() => onDelete?.(id)}
+                onKeyDown={(e) => e.key === "Enter" && onDelete?.(id)}
+                />
+            )}
+            </div>
         </>  
         )}
     </div>

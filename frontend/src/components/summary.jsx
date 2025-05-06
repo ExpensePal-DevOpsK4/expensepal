@@ -20,7 +20,7 @@ const Summary = () => {
   useEffect(() => {
     const fetchSummary = async () => {
       try {
-        const res = await axios.get('http://16.170.202.218:4000/api/expenses/summarize');
+        const res = await axios.get('http://16.171.165.69:4000/api/expenses/summarize');
         setSummary(res.data.data);
         setLoading(false);
       } catch (err) {

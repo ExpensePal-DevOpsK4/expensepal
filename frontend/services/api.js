@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = `http://16.170.202.218:4000/api`;
+const API_BASE_URL = `http://16.171.165.69:4000/api`;
 
 export const getExpenses = () => axios.get (`${API_BASE_URL}/expenses`);
 

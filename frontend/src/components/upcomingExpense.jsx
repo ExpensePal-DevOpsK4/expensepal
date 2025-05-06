@@ -38,7 +38,7 @@ const handleEditExpense = async (updatedExpense) => {
         const { _id, amount, category, description } = updatedExpense; // Destructure only allowed fields
 
         const response = await axios.patch(
-            `http://16.170.202.218:4000/api/expenses/${_id}`,
+            `http://16.171.165.69:4000/api/expenses/${_id}`,
             { amount, category, description }
         );
 
