@@ -81,7 +81,7 @@ const handleDeleteExpense = (expenseId) => {
     return (
         <div className='upcoming'>
 
-            <h2>💸Expenses</h2>
+            <h2>💸ExpensePal</h2>
             <div className='label-header'>
                 <p>Amount</p>
                 <p>Category</p>

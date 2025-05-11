@@ -32,7 +32,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 dir('frontend') {
-                    echo 'Running frontend tests...'
+                    echo 'Running frontend tests.....'
                     script {
                         timeout(time: 10, unit: 'MINUTES') {
                             sh 'yarn test'
@@ -45,7 +45,7 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 dir('frontend') {
-                    echo 'Building frontend app...'
+                    echo 'Building frontend app.....'
                     script {
                         timeout(time: 10, unit: 'MINUTES') {
                             sh 'yarn run build'

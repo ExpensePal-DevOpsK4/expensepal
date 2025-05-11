@@ -10,6 +10,7 @@ export const Navbar = () => {
                   alt="avatar"
               />
               <p>Abbas</p>
+
           </div>
     </nav>
   )
