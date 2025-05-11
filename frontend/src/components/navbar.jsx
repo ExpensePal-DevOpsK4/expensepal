@@ -4,12 +4,12 @@ import "./components.scss"
 export const Navbar = () => {
   return (
       <nav>
-          <p className='logo'>ExpensePal</p>
+          <p className='logo'></p>
           <div className='user'>
               <img src="https://static.vecteezy.com/system/resources/previews/002/002/257/non_2x/beautiful-woman-avatar-character-icon-free-vector.jpg"
                   alt="avatar"
               />
-              <p>Tracy</p>
+              <p>Abbas</p>
           </div>
     </nav>
   )
